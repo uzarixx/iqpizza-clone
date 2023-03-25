@@ -28,5 +28,4 @@ export class AuthController {
     return this.authService.refreshToken(request.cookies.jwt, response);
   }
 
-
 }

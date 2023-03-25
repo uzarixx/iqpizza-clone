@@ -8,6 +8,7 @@ interface ProductsCreateAttr {
   weight: number;
   isPizza: boolean;
   imageLink: string;
+  price: number;
 }
 
 @Table({ tableName: 'products' })
@@ -20,6 +21,8 @@ export class Products extends Model<Products, ProductsCreateAttr> {
   description: string;
   @Column({ type: DataType.INTEGER, defaultValue: 0 })
   weight: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 })
+  price: number;
   @Column({ type: DataType.BOOLEAN, defaultValue: true })
   isPizza: boolean;
   @Column({ type: DataType.STRING, defaultValue: '' })

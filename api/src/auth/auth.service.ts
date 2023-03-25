@@ -19,7 +19,6 @@ export class AuthService {
     const user = await this.validateUser(dto);
     const { token } = await this.generateRefreshToken(user);
     await this.jwtTokensService.createSession(token, user.id);
-    console.log(token);
     response.cookie('jwt', token, { httpOnly: true });
     return this.generateAccessToken(user);
   }

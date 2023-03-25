@@ -30,4 +30,9 @@ export class ProductsController {
     return this.productsService.getAllProductAttributes();
   }
 
+  @Get('/all-products')
+  getAllProducts() {
+    return this.productsService.getAllProducts();
+  }
+
 }

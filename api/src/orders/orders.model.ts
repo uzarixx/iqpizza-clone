@@ -4,6 +4,7 @@ import { OrderValue } from './orderValue.model';
 
 interface OrdersCreateAttr {
   userId: number;
+  orderPrice: number;
   city: string;
   address: string;
   isDelivery: boolean;
@@ -25,6 +26,8 @@ export class Orders extends Model<Orders, OrdersCreateAttr> {
   isDelivery: boolean;
   @Column({ type: DataType.STRING })
   status: string;
+  @Column({type: DataType.INTEGER, defaultValue: 0})
+  orderPrice: number
 
   @HasMany(() => OrderValue)
   orderValue: OrderValue;

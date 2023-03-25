@@ -9,6 +9,8 @@ export class CreateProductDto {
   description: string;
   @IsNumber({}, { message: 'Is not a number' })
   weight: number;
+  @IsNumber({}, { message: 'Is not a number' })
+  price: number;
   @IsBoolean({ message: 'Is not a boolean' })
   isPizza: boolean;
   @IsString({ message: 'Is not a string' })

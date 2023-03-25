@@ -3,6 +3,7 @@ import { Products } from '../products/products.model';
 import { Favorites } from '../favorites/favorites.model';
 import { Orders } from '../orders/orders.model';
 import { JwtTokens } from '../jwt-tokens/jwt-tokens.model';
+import { Tokens } from '../tokens/tokens.model';
 
 interface UserCreationAttrs {
   id: number;
@@ -36,4 +37,6 @@ export class Users extends Model<Users, UserCreationAttrs> {
   orders: Orders[];
   @HasMany(() => JwtTokens)
   jwtTokens: JwtTokens[];
+  @HasMany(() => Tokens)
+  tokens: Tokens[];
 }

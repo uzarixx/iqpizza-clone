@@ -23,8 +23,16 @@ export class ProductsService {
     return this.productsAttributes.findAll();
   }
 
+  async getProductAttributesById(id: number | number[] | string[]) {
+    return this.productsAttributes.findAll({ where: { id } });
+  }
+
   async createProductAttributes(dto: CreateProductAttributesDto) {
     return this.productsAttributes.create({ ...dto });
+  }
+
+  async getAllProducts() {
+    return this.productsRepository.findAll();
   }
 
 

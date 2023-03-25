@@ -19,7 +19,13 @@ export class OrdersService {
   }
 
   async createOrder(dto: CreateOrderDto, user: Users) {
-    const order = await this.ordersRepository.create({ ...dto, status: 'Готовится', userId: user.id });
+    const resultCalculate = await this.calculationOrderTotal(dto);
+    const order = await this.ordersRepository.create({
+      ...dto,
+      status: 'Готовится',
+      userId: user.id,
+      orderPrice: resultCalculate,
+    });
     const orderValue = await this.orderValueRepository.bulkCreate(dto.orderValue.map((el) => ({
       ...el,
       orderId: order.id,
@@ -30,6 +36,19 @@ export class OrdersService {
     })));
     const orderProductsAttrRepository = await this.orderProductsAttrRepository.bulkCreate(array);
     return { order, orderValue, orderProductsAttrRepository };
+  }
+
+  private async calculationOrderTotal(dto: CreateOrderDto) {
+    const attributesId = dto.orderValue.flatMap((el) => el.productAttributes.map((el) => el.productAttrId));
+    const [orderProductsAttributes, orderProducts] = await Promise.all([
+      this.productService.getProductAttributesById(attributesId),
+      this.productService.getProductById(dto.orderValue.map((el) => el.productId)),
+    ]);
+    const attributesPriced = orderProductsAttributes.map((el) => ({ price: el.price }));
+    return [...orderProducts, ...attributesPriced].map((el, i) => ({
+      price: el.price,
+      count: dto.orderValue[i]?.count || 1,
+    })).reduce((total, { price, count }) => total + price * count, 0);
   }
 
   async getOrder(id: number, user: Users) {
@@ -47,6 +66,12 @@ export class OrdersService {
       pizza: products.filter((product) => product.id === el.productId)[0],
     }));
     return { order, orderMenu: result };
+  }
+
+
+  async getAllOrders(user: Users) {
+    const orders = await this.ordersRepository.findAll({ where: { userId: user.id } });
+    return orders;
   }
 
   async successOrder(orderId: number) {

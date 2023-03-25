@@ -16,12 +16,16 @@ import { OrderValue } from './orders/orderValue.model';
 import { OrderProductsAttributes } from './orders/orderProductAttributes.model';
 import { JwtTokensModule } from './jwt-tokens/jwt-tokens.module';
 import { JwtTokens } from './jwt-tokens/jwt-tokens.model';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TokensModule } from './tokens/tokens.module';
+import { Tokens } from './tokens/tokens.model';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
+    ScheduleModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.POSTGRES_HOST,
@@ -29,7 +33,7 @@ import { JwtTokens } from './jwt-tokens/jwt-tokens.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Users, Products, Favorites, ProductsAttributes, OrderValue, Orders, OrderProductsAttributes, JwtTokens],
+      models: [Users, Products, Favorites, ProductsAttributes, OrderValue, Orders, OrderProductsAttributes, JwtTokens, Tokens],
       autoLoadModels: true,
       logging: false,
     }),
@@ -39,6 +43,7 @@ import { JwtTokens } from './jwt-tokens/jwt-tokens.model';
     FavoritesModule,
     OrdersModule,
     JwtTokensModule,
+    TokensModule,
   ],
 })
 export class AppModule {

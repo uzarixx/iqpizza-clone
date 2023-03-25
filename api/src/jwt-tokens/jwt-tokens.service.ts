@@ -22,4 +22,8 @@ export class JwtTokensService {
     }
     return session;
   }
+
+  async deleteSessions() {
+    const session = await this.jwtTokensRepository.destroy({ where: { expiresAt: { [Op.lt]: Date.now() } } });
+  }
 }

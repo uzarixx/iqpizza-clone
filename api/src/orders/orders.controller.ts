@@ -5,7 +5,6 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { UserAuth } from '../guard/get-auth.decorator';
 import { Users } from '../users/users.model';
-
 @Controller('order')
 export class OrdersController {
   constructor(private orderService: OrdersService) {
@@ -19,7 +18,13 @@ export class OrdersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/:id')
+  @Get('/get-all')
+  getAllOrders(@UserAuth() user: Users) {
+    return this.orderService.getAllOrders(user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/get-order/:id')
   getOrder(@Param('id') id: number, @UserAuth() user: Users) {
     return this.orderService.getOrder(id, user);
   }
@@ -35,6 +40,7 @@ export class OrdersController {
   cancelOrder(@Param('orderId') orderId: number) {
     return this.orderService.cancelOrder(orderId);
   }
+
 
 
 }
