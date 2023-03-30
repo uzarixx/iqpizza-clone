@@ -1,0 +1,51 @@
+.menuLayout {
+  width: 100%;
+
+  .head {
+    width: 100%;
+    margin-bottom: 24px;
+
+    .input {
+
+      margin-bottom: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      .inputWrapper {
+        position: relative;
+        max-width: 360px;
+        width: 100%;
+      }
+
+      svg {
+        position: absolute;
+        fill: #9B9B9B;
+        left: 16px;
+        top: 33%;
+        transform: translate(-33%);
+      }
+
+      input {
+        background: #FFFFFF;
+        padding: 15px 38px;
+        width: 100%;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid #E8EAEF;
+      }
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.25;
+      color: #343434;
+    }
+  }
+
+  .menuGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+  }
+}

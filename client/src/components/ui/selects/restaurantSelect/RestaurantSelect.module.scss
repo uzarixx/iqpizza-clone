@@ -1,0 +1,84 @@
+.restaurantContainer {
+  max-height: 310px;
+  overflow: auto;
+  margin-top: 16px;
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: #E8EAEF;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #9B9B9B;
+    border-radius: 4px;
+
+  }
+
+  .restaurantWrapper {
+    max-height: 133px;
+    padding: 24px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #E8EAEF;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 16px;
+      color: #343434;
+      font-weight: 450;
+    }
+
+    span {
+      display: inline-block;
+      margin: 8px 0 16px 0;
+      color: #9B9B9B;
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: -.0015em;
+      padding-left: 18px;
+      color: #343434;
+      position: relative;
+      font-weight: 400;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+    }
+
+    .isOpen {
+      &::before {
+        background: #36ce00;
+      }
+    }
+
+    .isClosed {
+      &::before {
+        background: #FF0000;
+      }
+    }
+  }
+
+  .selected {
+    h2 {
+      color: #F47521;
+    }
+    background-color: rgb(241, 241, 255);
+  }
+}

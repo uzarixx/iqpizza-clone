@@ -1,0 +1,37 @@
+.menuBar {
+  position: sticky;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+  max-width: 105px;
+  width: 100%;
+  max-height: 90vh;
+  margin-right: 32px;
+  overflow: hidden;
+
+  h2 {
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 24px;
+    color: #343434;
+
+  }
+
+  ul {
+    li {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 21px;
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        opacity: .5;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

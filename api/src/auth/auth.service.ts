@@ -9,11 +9,15 @@ import { Response } from 'express';
 import { LoginDto } from './dto/login.dto';
 import { JwtTokensService } from '../jwt-tokens/jwt-tokens.service';
 
+
 @Injectable()
 export class AuthService {
 
-  constructor(private usersService: UsersService, private jwtService: JwtService, private jwtTokensService: JwtTokensService) {
-  }
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+    private jwtTokensService: JwtTokensService,
+  ) {}
 
   async login(dto: LoginDto, response: Response) {
     const user = await this.validateUser(dto);

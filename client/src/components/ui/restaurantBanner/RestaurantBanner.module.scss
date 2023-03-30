@@ -1,0 +1,162 @@
+.wrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  max-height: 370px;
+  height: 100%;
+  background: white;
+
+
+  .leftBanner {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    height: 370px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .right {
+    padding: 32px;
+    height: 100%;
+
+    img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .title {
+      display: flex;
+
+      h2 {
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        white-space: pre-wrap;
+        font-size: 24px;
+        line-height: 1.25;
+        letter-spacing: .0007em;
+        flex: 1 1;
+        margin-right: 24px;
+        font-weight: 450;
+
+      }
+    }
+
+    .numberPhones {
+      margin: 12px 0 39px 0;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        font-size: 14px;
+        color: #F47521;
+        margin-bottom: 4px;
+        transition: opacity .6s ease-in-out;
+
+        &:hover {
+          opacity: .6;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .infoAboutRestaurant {
+      padding: 14px 16px;
+      border: 1px solid #E8EAEF;
+      border-radius: 8px;
+      max-height: 63px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: opacity .5s;
+
+      &:hover {
+        opacity: .5;
+      }
+
+      .right {
+        padding: 0;
+
+        svg {
+          fill: #F47521;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0 0 4px;
+        color: #343434;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: #9B9B9B;
+        font-size: 12px;
+        font-weight: 400;
+
+        span {
+          display: block;
+          width: 8px;
+          height: 8px;
+          margin-right: 8px;
+          border-radius: 50%;
+        }
+
+        .isOpen {
+          background: #36ce00;
+        }
+
+        .isClosed {
+          background: #FF0000;
+        }
+      }
+    }
+
+    .reviewBlock {
+      margin-top: 16px;
+      max-height: 59px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.33;
+      margin-right: 20px;
+      color: #343434;
+      font-weight: 400;
+      background: #F8F8FB;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      cursor: pointer;
+      transition: opacity .4s;
+
+      &:hover {
+        opacity: .5;
+      }
+
+      p {
+        max-width: 230px;
+      }
+
+      svg {
+        stroke: #F47521;
+      }
+    }
+  }
+}

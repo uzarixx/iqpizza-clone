@@ -17,8 +17,12 @@ import { OrderProductsAttributes } from './orders/orderProductAttributes.model';
 import { JwtTokensModule } from './jwt-tokens/jwt-tokens.module';
 import { JwtTokens } from './jwt-tokens/jwt-tokens.model';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TokensModule } from './tokens/tokens.module';
-import { Tokens } from './tokens/tokens.model';
+import { RestaurantModule } from './restaurant/restaurant.module';
+import { Restaurant } from './restaurant/restaurant.model';
+import { City } from './restaurant/city.model';
+import { ReviewModule } from './review/review.module';
+import { Review } from './review/review.model';
+import { ReviewPhoto } from './review/reviewPhoto.model';
 
 @Module({
   imports: [
@@ -33,7 +37,20 @@ import { Tokens } from './tokens/tokens.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Users, Products, Favorites, ProductsAttributes, OrderValue, Orders, OrderProductsAttributes, JwtTokens, Tokens],
+      models: [
+        Users,
+        Products,
+        Favorites,
+        ProductsAttributes,
+        OrderValue,
+        Orders,
+        OrderProductsAttributes,
+        JwtTokens,
+        Restaurant,
+        City,
+        Review,
+        ReviewPhoto,
+      ],
       autoLoadModels: true,
       logging: false,
     }),
@@ -43,7 +60,8 @@ import { Tokens } from './tokens/tokens.model';
     FavoritesModule,
     OrdersModule,
     JwtTokensModule,
-    TokensModule,
+    RestaurantModule,
+    ReviewModule,
   ],
 })
 export class AppModule {

@@ -1,0 +1,93 @@
+.productCard {
+  display: flex;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: scale .5s ease-in-out;
+
+  &:hover {
+    scale: 1.03;
+  }
+
+  .left {
+    width: 154px;
+    height: 154px;
+    position: relative;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    span {
+      position: absolute;
+      background: #FFE5D5;
+      color: #F47521;
+      right: 8px;
+      bottom: 8px;
+      font-size: 8px;
+      z-index: 1;
+      padding: 0 8px;
+      border-radius: 4px;
+    }
+  }
+
+  .right {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 339px;
+    position: relative;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 450;
+      color: #343434;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #9B9B9B;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 5px;
+      -webkit-box-orient: vertical;
+      display: block;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre-wrap;
+      -webkit-line-clamp: 1;
+    }
+
+    .bottomWrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      span {
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 700;
+        color: #343434;
+        font-family: "sf-bold", sans-serif;
+      }
+
+      .onAddToCard {
+        padding: 7px;
+        line-height: 0;
+        background: #F47521;
+        border-radius: 6px;
+        cursor: pointer;
+        svg {
+          fill: white;
+        }
+      }
+    }
+
+  }
+}

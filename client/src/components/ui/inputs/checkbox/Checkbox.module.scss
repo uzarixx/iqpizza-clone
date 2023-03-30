@@ -1,0 +1,33 @@
+.checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #9B9B9B;
+  background: white;
+  border-radius: 4px;
+  display: block;
+  transition: border-color .3s ease-in-out, background-color .3s ease-in-out;
+
+  .checked {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    background: #F47521;
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      fill: white;
+    }
+  }
+
+  .checkedActive {
+    opacity: 1;
+  }
+}

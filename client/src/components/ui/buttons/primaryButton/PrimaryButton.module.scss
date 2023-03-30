@@ -1,0 +1,25 @@
+@mixin button {
+  padding: 15px 16px;
+
+  color: white;
+  border-radius: 8px;
+  width: 100%;
+  transition: scale .5s;
+  font-size: 14px;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+.default {
+  @include button;
+  background: #F47521;
+}
+
+.disabled {
+  @include button;
+  color: #9B9B9B;
+  background: #E8EAEF;
+  cursor: not-allowed;
+}

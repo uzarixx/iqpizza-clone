@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards, UsePipes } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ValidationPipe } from '../pipes/validation.pipe';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
@@ -33,6 +33,11 @@ export class ProductsController {
   @Get('/all-products')
   getAllProducts() {
     return this.productsService.getAllProducts();
+  }
+
+  @Get('/get-by-id/:id')
+  getProductById(@Param('id') id: number) {
+    return this.productsService.getProductById(id)
   }
 
 }

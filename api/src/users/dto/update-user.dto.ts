@@ -2,9 +2,9 @@ import { IsDate, IsString } from 'class-validator';
 
 export class UpdateUserDto {
   @IsString({ message: 'Is not a string' })
-  name: string;
+  readonly name: string;
   @IsString({ message: 'Is not a string' })
-  city: string;
+  readonly city: string;
   @IsString({ message: 'Is not a string' })
-  dateOfBirth: string;
+  readonly dateOfBirth: string;
 }

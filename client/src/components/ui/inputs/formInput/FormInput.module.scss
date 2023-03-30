@@ -1,0 +1,48 @@
+.inputWrapper {
+  margin-bottom: 24px;
+  position: relative;
+
+  p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #9B9B9B;
+    font-weight: 400;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background-color: #F8F8FB;
+    border: 1px solid #F8F8FB;
+    color: #343434;
+    z-index: 9;
+    font-family: 'Roboto', 'sans-serif';
+    &::placeholder {
+      font-weight: 400;
+      color: #343434;
+      opacity: .7;
+    }
+  }
+
+  span {
+    font-size: 12px;
+    line-height: 1.33;
+    position: absolute;
+    font-weight: 400;
+    bottom: 4px;
+    left: 0;
+    color: red;
+    white-space: nowrap;
+    transition: bottom .3s ease-in-out;
+    z-index: -1;
+  }
+
+  .activeErrorMessage {
+    bottom: -20px;
+  }
+
+  .activeError {
+    border-color: red;
+  }
+}
