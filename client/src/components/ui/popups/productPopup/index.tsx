@@ -1,55 +1,24 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import styles from './ProductPopup.module.scss';
 import PopupLayout from '../../../layouts/popupLayout';
 import { useAnimationPopup } from '../../../../hooks/useAnimationPopup';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { setProductPopup } from '../../../../store/counter/popupSlice';
-import ProductsFetchService from '../../../../services/http/productsFetchService';
-import { setCart } from '../../../../store/counter/cartSlice';
+import Checkbox from '../../inputs/checkbox';
+import PrimaryButton from '../../buttons/primaryButton';
+import { useCart } from '../../../../hooks/useCart';
+import { useFetchProduct } from '../../../../hooks/useFetchProduct';
 
-interface IProduct {
-  description: string,
-  id: number,
-  imageLink: string,
-  isPizza: boolean,
-  name: string,
-  price: number,
-  weight: number
-  count: number
-}
 
 const ProductPopup: FC = () => {
-    const [product, setProduct] = useState<IProduct[]>([]);
-    const dispatch = useAppDispatch();
-    const cart = useAppSelector((root) => root.cartSlice.cart);
     const isActive = useAppSelector((root) => root.popupSlice.productPopup);
+    const { product, attributes } = useFetchProduct(isActive.active, isActive.productId);
+    const dispatch = useAppDispatch();
     const closeDispatch = () => {
       dispatch(setProductPopup({ productId: 0, active: false }));
     };
     const { active, onClosePopup } = useAnimationPopup({ isActive: isActive.active, closeDispatch });
-    useEffect(() => {
-      const fetchProduct = async () => {
-        const { data } = await ProductsFetchService.getProductById(isActive.productId);
-        return setProduct(data);
-      };
-      if (isActive) {
-        fetchProduct();
-      }
-    }, [isActive]);
-    const onAddToCard = (el: IProduct) => () => {
-      const findProduct = cart.find((obj: IProduct) => obj.id === el.id);
-      if (findProduct)
-        dispatch(setCart(cart.map((obj: IProduct) => obj.id === el.id ? ({ ...obj, count: obj.count + 1 }) : ({
-          ...obj,
-          count: 1,
-        }))));
-      else
-        dispatch(setCart(cart.concat({ ...el, count: 1 })));
-    };
-
-    console.log(cart);
-
-
+    const { onAddToCard, onClickAttributes, selectedAttributes, setCount, count } = useCart(onClosePopup);
     return (
       <PopupLayout active={active} onClosePopup={onClosePopup}>
         <div className={`${styles.productPopupWrapper} ${active && styles.active}`}
@@ -67,9 +36,36 @@ const ProductPopup: FC = () => {
                 <span className={styles.weight}>{el.weight} г</span>
                 <span className={styles.price}>{el.price} ₴</span>
                 <p className={styles.description}>{el.description}</p>
+                <div className={styles.modify}>
+                  <p>Модифікатори</p>
+                  <ul>
+                    {attributes.map((el) =>
+                      <li onClick={onClickAttributes(el)} key={el.id}>
+                        <div className={styles.left}>
+                          <Checkbox isActive={selectedAttributes.includes(el)} setChecked={() => {
+                          }} />
+                          <p>{el.name}</p>
+                        </div>
+                        <span>+ {el.price} ₴</span></li>,
+                    )}
+                  </ul>
+                </div>
               </div>
               <div className={styles.selectors}>
-                <button onClick={onAddToCard(el)}>Додати: {el.price} ₴</button>
+                <div className={styles.left}>
+                  <button onClick={() => setCount((p) => p >= 2 ? p - 1 : p)}>-</button>
+                  <p>{count}</p>
+                  <button onClick={() => setCount((p) => p + 1)}>+</button>
+                </div>
+                <div className={styles.right}>
+                  <PrimaryButton
+                    isDefault
+                    onClick={onAddToCard(el)}>Додати:
+                    <p>
+                      {selectedAttributes.map((obj) => obj?.price)?.reduce((p, c) => p + c, el.price) * count} ₴
+                    </p>
+                  </PrimaryButton>
+                </div>
               </div>
             </div>,
           )}

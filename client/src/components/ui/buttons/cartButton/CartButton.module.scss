@@ -1,0 +1,26 @@
+.buttonWrapper {
+  position: fixed;
+  right: 34px;
+  bottom: 32px;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F47521;
+  color: white;
+  border-radius: 8px;
+  padding: 21px 24px;
+  cursor: pointer;
+  transition: scale .3s ease-in-out, transform .3s;
+  z-index: 2;
+  transform: translateX(110%);
+
+  &:hover {
+    scale: 1.04;
+  }
+}
+
+.active {
+  transform: translateX(0);
+}

@@ -6,11 +6,13 @@ export interface CounterState {
   reviewPopup: boolean;
   reviewEndPopup: boolean;
   productPopup: { productId: number, active: boolean };
+  cartPopup: boolean;
 }
 
 const initialState: CounterState = {
   reviewPopup: false,
   reviewEndPopup: false,
+  cartPopup: false,
   productPopup: { productId: 0, active: false },
 };
 
@@ -27,11 +29,14 @@ const popupSlice = createSlice({
     setProductPopup: (state, action) => {
       state.productPopup = action.payload;
     },
+    setCartPopup: (state, action) => {
+      state.cartPopup = action.payload;
+    },
   },
 });
 
 
 export default popupSlice.reducer;
 
-export const { setReviewPopup, setReviewEndPopup, setProductPopup } = popupSlice.actions;
+export const { setReviewPopup, setReviewEndPopup, setProductPopup, setCartPopup } = popupSlice.actions;
 

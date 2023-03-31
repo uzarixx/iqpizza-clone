@@ -1,3 +1,12 @@
+@mixin createShadow {
+  background-image: linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+  position: absolute;
+  left: 24px;
+  width: calc(100% - 48px);
+  height: 30px;
+  pointer-events: none;
+}
+
 .productPopupWrapper {
   position: relative;
   max-width: 400px;
@@ -17,6 +26,7 @@
   .main {
     .imageBlock {
       width: 100%;
+      height: 100%;
       max-height: 400px;
       position: relative;
 
@@ -28,13 +38,8 @@
       }
 
       .scrollBlockShadow {
-        position: absolute;
-        left: 24px;
-        width: calc(100% - 48px);
-        height: 30px;
-        pointer-events: none;
+        @include createShadow;
         bottom: -40;
-        background-image: linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
       }
     }
 
@@ -44,8 +49,17 @@
   .scrollBlock {
     padding: 24px;
     overflow-y: auto;
-    max-height: 615px;
+    max-height: 415px;
     height: 100%;
+
+    &::-webkit-scrollbar {
+      background: #F8F8FB;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #9B9B9B;
+    }
 
     .title {
       margin-bottom: 12px;
@@ -84,7 +98,120 @@
       white-space: pre-wrap;
       font-weight: 400;
     }
+
+    .modify {
+      p {
+        margin-bottom: 14px;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          width: 100%;
+          background: #F8F8FB;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 40px;
+          margin-bottom: 8px;
+          padding: 0 16px 0 10px;
+          border-radius: 8px;
+
+          .left {
+            display: flex;
+            align-items: center;
+
+            span {
+              margin-left: 0;
+            }
+
+            p {
+              margin: 0 0 0 16px;
+              font-size: 14px;
+              color: #343434;
+            }
+          }
+
+
+          span {
+            color: #F47521;
+            font-size: 14px;
+            margin-left: 8px;
+            line-height: 19px;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
   }
+
+  .selectors {
+    position: relative;
+    max-height: 90px;
+    height: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      max-width: 140px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      button {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        font-weight: 400;
+        color: #F47521;
+        background: transparent;
+        border: 1px solid #F47521;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      p {
+        font-size: 16px;
+        line-height: 21px;
+        width: 41px;
+        display: flex;
+        justify-content: center;
+        color: #9B9B9B;
+      }
+    }
+
+    .right {
+      max-width: 140px;
+      width: 100%;
+
+      button {
+        display: flex;
+        font-weight: 450;
+        font-size: 14px;
+        justify-content: space-between;
+      }
+    }
+
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 24px;
+      width: calc(100% - 48px);
+      height: 1px;
+      background-color: #E8EAEF;
+    }
+  }
+
 }
 
 .active {

@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import PrimaryButton from '../../buttons/primaryButton';
 import { useCreateReview } from '../../../../hooks/useCreateReview';
 import { setReviewEndPopup, setReviewPopup } from '../../../../store/counter/popupSlice';
+import checkbox from '../../inputs/checkbox';
 
 
 interface IForm {
@@ -69,7 +70,7 @@ const ReviewPopup: FC = () => {
             <Textarea name={'reviewText'} placeholder={'Введіть ваш відгук'} />
             <File setImages={setImages} />
             <div className={styles.bottomForm}>
-              <span><Checkbox setChecked={setChecked} />
+              <span><Checkbox isActive={checked} setChecked={setChecked} />
                 <p>Згоден, з правилами <Link
                   target={'_blank'}
                   to={'https://www.eatery.club/privacy_policy.pdf'}>

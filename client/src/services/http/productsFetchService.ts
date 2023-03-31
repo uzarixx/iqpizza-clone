@@ -10,4 +10,9 @@ export default class ProductsFetchService {
     return $api.get(`/product/get-by-id/${id}`);
   }
 
+
+  static async getAllAttributes() {
+    return $api.get('/product/all-attributes')
+  }
+
 }

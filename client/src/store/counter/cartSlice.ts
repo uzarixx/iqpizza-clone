@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IProduct } from '../../constants/types';
 
 
 export interface CounterState {
-  cart: any
+  cart: IProduct[];
 }
 
 const initialState: CounterState = {

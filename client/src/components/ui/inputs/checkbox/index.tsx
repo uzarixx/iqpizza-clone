@@ -1,20 +1,19 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './Checkbox.module.scss';
 import CheckBox from '../../icons/CheckBox';
 
 interface props {
   setChecked: (v: boolean) => void;
+  isActive: boolean;
 }
 
-const Checkbox: FC<props> = ({ setChecked }) => {
-  const [active, setActive] = useState(false);
+const Checkbox: FC<props> = ({ setChecked, isActive }) => {
   const onClickChecked = () => {
-    setActive(!active);
-    setChecked && setChecked(!active);
+    setChecked(!isActive);
   };
   return (
     <div className={styles.checkbox} onClick={onClickChecked}>
-      <span className={`${styles.checked} ${active && styles.checkedActive}`}><CheckBox /></span>
+      <span className={`${styles.checked} ${isActive && styles.checkedActive}`}><CheckBox /></span>
     </div>
   );
 };

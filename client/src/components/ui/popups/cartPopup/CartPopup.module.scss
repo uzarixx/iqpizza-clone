@@ -1,0 +1,133 @@
+.cartContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 100vh;
+  transform: translateX(50%);
+  transition: .3s ease-in-out;
+
+  .cartWrapper {
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    height: 100%;
+
+    .head {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 32px;
+      border-bottom: 1px solid #E8EAEF;
+
+      svg {
+        cursor: pointer;
+        fill: #F47521;
+      }
+    }
+
+    .productsWrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 32px;
+
+      .productBlock {
+        display: flex;
+        padding-bottom: 24px;
+
+        .left {
+          min-width: 64px;
+          height: 64px;
+          margin-right: 16px;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .right {
+          width: 100%;
+
+
+          .title {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px;
+
+            p {
+              font-size: 14px;
+              color: #343434;
+              line-height: 19px;
+            }
+
+            svg {
+              fill: #9B9B9B;
+              width: 16px;
+              height: 16px;
+              cursor: pointer;
+            }
+          }
+
+          ul {
+            li {
+              color: #9B9B9B;
+              font-size: 12px;
+              font-weight: 400;
+            }
+          }
+
+          .bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            p {
+              font-size: 14px;
+              color: #343434;
+            }
+
+
+            .controls {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+
+              p {
+                font-size: 14px;
+                line-height: 19px;
+                color: #9B9B9B;
+              }
+
+              button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                border-radius: 8px;
+                border: 1px solid #F47521;
+                background: transparent;
+                font-size: 20px;
+                font-weight: 400;
+                color: #F47521;
+              }
+
+              .active {
+                color: #9B9B9B;
+                border-color: #9B9B9B;
+                cursor: not-allowed;
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.active {
+  transform: translateX(0);
+}

@@ -6,6 +6,7 @@ import MenuBar from '../../components/ui/asides/menuBar';
 import MenuLayout from '../../components/layouts/menuLayout';
 import { useAppDispatch } from '../../store/store';
 import { fetchProducts } from '../../store/counter/productsSlice';
+import CartButton from '../../components/ui/buttons/cartButton';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ const Home: FC = () => {
       <div className={styles.menu}>
         <MenuBar />
         <MenuLayout />
+        <CartButton />
       </div>
     </div>
   );
