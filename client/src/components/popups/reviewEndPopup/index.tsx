@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styles from './ReviewEndPopup.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { useAnimationPopup } from '../../../../hooks/useAnimationPopup';
-import PopupLayout from '../../../layouts/popupLayout';
-import { setReviewEndPopup } from '../../../../store/counter/popupSlice';
-import Close from '../../icons/Close';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAnimationPopup } from '../../../hooks/useAnimationPopup';
+import PopupLayout from '../../layouts/popupLayout';
+import { setReviewEndPopup } from '../../../store/counter/popupSlice';
+import Close from '../../ui/icons/Close';
+
 
 
 const ReviewEndPopup: FC = () => {

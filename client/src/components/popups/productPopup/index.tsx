@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styles from './ProductPopup.module.scss';
-import PopupLayout from '../../../layouts/popupLayout';
-import { useAnimationPopup } from '../../../../hooks/useAnimationPopup';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { setProductPopup } from '../../../../store/counter/popupSlice';
-import Checkbox from '../../inputs/checkbox';
-import PrimaryButton from '../../buttons/primaryButton';
-import { useCart } from '../../../../hooks/useCart';
-import { useFetchProduct } from '../../../../hooks/useFetchProduct';
+import PopupLayout from '../../layouts/popupLayout';
+import { useAnimationPopup } from '../../../hooks/useAnimationPopup';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { setProductPopup } from '../../../store/counter/popupSlice';
+import { useCart } from '../../../hooks/useCart';
+import { useFetchProduct } from '../../../hooks/useFetchProduct';
+import Checkbox from '../../ui/inputs/checkbox';
+import PrimaryButton from '../../ui/buttons/primaryButton';
 
 
 const ProductPopup: FC = () => {
@@ -53,7 +53,7 @@ const ProductPopup: FC = () => {
               </div>
               <div className={styles.selectors}>
                 <div className={styles.left}>
-                  <button onClick={() => setCount((p) => p >= 2 ? p - 1 : p)}>-</button>
+                  <button className={`${count === 1 && styles.activeButton}`} onClick={() => setCount((p) => p >= 2 ? p - 1 : p)}>-</button>
                   <p>{count}</p>
                   <button onClick={() => setCount((p) => p + 1)}>+</button>
                 </div>

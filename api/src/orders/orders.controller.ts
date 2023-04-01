@@ -11,11 +11,11 @@ export class OrdersController {
   }
 
   @UsePipes(ValidationPipe)
-  @UseGuards(JwtAuthGuard)
   @Post('/create')
-  createOrder(@Body() dto: CreateOrderDto, @UserAuth() user: Users) {
-    return this.orderService.createOrder(dto, user);
+  createOrder(@Body() dto: CreateOrderDto) {
+    return this.orderService.createOrder(dto);
   }
+
 
   @UseGuards(JwtAuthGuard)
   @Get('/get-all')
@@ -28,6 +28,7 @@ export class OrdersController {
   getOrder(@Param('id') id: number, @UserAuth() user: Users) {
     return this.orderService.getOrder(id, user);
   }
+
 
   @UseGuards(JwtAuthGuard)
   @Put('/success/:orderId')

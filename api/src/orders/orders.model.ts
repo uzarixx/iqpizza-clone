@@ -26,8 +26,16 @@ export class Orders extends Model<Orders, OrdersCreateAttr> {
   isDelivery: boolean;
   @Column({ type: DataType.STRING })
   status: string;
-  @Column({type: DataType.INTEGER, defaultValue: 0})
-  orderPrice: number
+  @Column({ type: DataType.INTEGER, defaultValue: 0 })
+  orderPrice: number;
+  @Column({ type: DataType.INTEGER })
+  userAmount: number;
+  @Column({ type: DataType.TEXT })
+  comment: string;
+  @Column({ type: DataType.STRING })
+  userName: string;
+  @Column({ type: DataType.STRING })
+  phoneNumber: string;
 
   @HasMany(() => OrderValue)
   orderValue: OrderValue;

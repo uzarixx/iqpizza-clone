@@ -15,7 +15,7 @@ export class ValidationPipe
     metadata: ArgumentMetadata
   ): Promise<any> {
     const obj = plainToClass(
-      metadata.metatype,
+      metadata?.metatype,
       value
     );
     const errors = await validate(obj);

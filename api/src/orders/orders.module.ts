@@ -7,11 +7,12 @@ import { OrderValue } from './orderValue.model';
 import { OrderProductsAttributes } from './orderProductAttributes.model';
 import { JwtModule } from '@nestjs/jwt';
 import { ProductsModule } from '../products/products.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   providers: [OrdersService],
   controllers: [OrdersController],
-  imports: [SequelizeModule.forFeature([Orders, OrderValue, OrderProductsAttributes]), JwtModule, ProductsModule],
+  imports: [SequelizeModule.forFeature([Orders, OrderValue, OrderProductsAttributes]), JwtModule, ProductsModule, UsersModule],
 })
 export class OrdersModule {
 }

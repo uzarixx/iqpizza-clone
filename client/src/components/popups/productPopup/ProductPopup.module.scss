@@ -123,6 +123,7 @@
             display: flex;
             align-items: center;
 
+
             span {
               margin-left: 0;
             }
@@ -163,6 +164,14 @@
       width: 100%;
       display: flex;
       align-items: center;
+
+
+
+      .activeButton{
+        cursor: not-allowed;
+        border: 1px solid #9B9B9B;
+        color: #9B9B9B;
+      }
 
       button {
         width: 44px;

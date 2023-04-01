@@ -1,12 +1,12 @@
 import { FC, useState } from 'react';
 import styles from './Address.module.scss';
-import Select from '../../components/ui/selects/citySelect';
-import RestaurantSelect from '../../components/ui/selects/restaurantSelect';
-import CheckPoint from '../../components/ui/icons/CheckPoint';
-import PrimaryButton from '../../components/ui/buttons/primaryButton';
+import Select from '../../ui/selects/citySelect';
+import RestaurantSelect from '../../ui/selects/restaurantSelect';
+import CheckPoint from '../../ui/icons/CheckPoint';
+import PrimaryButton from '../../ui/buttons/primaryButton';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/store';
-import { fetchRestaurant, setAddress, setDelivery, setRestaurantValueId } from '../../store/counter/visualSlice';
+import { useAppDispatch } from '../../../store/store';
+import { fetchRestaurant, setAddress, setDelivery, setRestaurantValueId } from '../../../store/counter/visualSlice';
 
 const Address: FC = () => {
   const dispatch = useAppDispatch();

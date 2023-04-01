@@ -1,21 +1,20 @@
 import React, { FC, useState } from 'react';
 import styles from './ReviewPopup.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { useAnimationPopup } from '../../../../hooks/useAnimationPopup';
-import Close from '../../icons/Close';
-import PopupLayout from '../../../layouts/popupLayout';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAnimationPopup } from '../../../hooks/useAnimationPopup';
+import PopupLayout from '../../layouts/popupLayout';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import FormInput from '../../inputs/formInput';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { reviewValidation } from '../../../../utils/validation/reviewValidation';
-import Textarea from '../../inputs/textarea';
-import File from '../../inputs/file';
-import Checkbox from '../../inputs/checkbox';
+import { reviewValidation } from '../../../utils/validation/reviewValidation';
+import File from '../../ui/inputs/file/index';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../../buttons/primaryButton';
-import { useCreateReview } from '../../../../hooks/useCreateReview';
-import { setReviewEndPopup, setReviewPopup } from '../../../../store/counter/popupSlice';
-import checkbox from '../../inputs/checkbox';
+import PrimaryButton from '../../ui/buttons/primaryButton';
+import { useCreateReview } from '../../../hooks/useCreateReview';
+import { setReviewEndPopup, setReviewPopup } from '../../../store/counter/popupSlice';
+import Checkbox from '../../ui/inputs/checkbox';
+import FormInput from '../../ui/inputs/formInput';
+import Close from '../../ui/icons/Close';
+import Textarea from '../../ui/inputs/textarea';
 
 
 interface IForm {
@@ -39,10 +38,13 @@ const ReviewPopup: FC = () => {
     resolver: yupResolver(reviewValidation),
   });
   const onSubmit: SubmitHandler<IForm> = async (props) => {
-    await useCreateReview(images, props);
-    dispatch(setReviewPopup(false));
-    dispatch(setReviewEndPopup(true));
+    if (!methods.formState.errors) {
+      await useCreateReview(images, props);
+      dispatch(setReviewPopup(false));
+      dispatch(setReviewEndPopup(true));
+    }
   };
+
 
   return (
     <PopupLayout active={active} onClosePopup={onClosePopup}>
@@ -79,6 +81,7 @@ const ReviewPopup: FC = () => {
               </p>
               </span>
               <PrimaryButton
+                type={'submit'}
                 isDefault={checked && !Boolean(methods.formState.errors.phoneNumber) && !Boolean(methods.formState.errors.name)}
                 onClick={onSubmit}>Відправити
                 відгук</PrimaryButton>

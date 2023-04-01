@@ -6,6 +6,7 @@ import { OrderValue } from './orderValue.model';
 import { OrderProductsAttributes } from './orderProductAttributes.model';
 import { Users } from '../users/users.model';
 import { ProductsService } from '../products/products.service';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class OrdersService {
@@ -15,23 +16,26 @@ export class OrdersService {
     @InjectModel(OrderValue) private orderValueRepository: typeof OrderValue,
     @InjectModel(OrderProductsAttributes) private orderProductsAttrRepository: typeof OrderProductsAttributes,
     private productService: ProductsService,
+    private usersService: UsersService
   ) {
   }
 
-  async createOrder(dto: CreateOrderDto, user: Users) {
+  async createOrder(dto: CreateOrderDto) {
+    const user = await this.usersService.findUserByPhone(dto.phoneNumber)
     const resultCalculate = await this.calculationOrderTotal(dto);
     const order = await this.ordersRepository.create({
       ...dto,
       status: 'Готовится',
-      userId: user.id,
+      userId: user?.id || null,
       orderPrice: resultCalculate,
     });
     const orderValue = await this.orderValueRepository.bulkCreate(dto.orderValue.map((el) => ({
       ...el,
+      productId: el.id,
       orderId: order.id,
     })));
-    const array = dto.orderValue.flatMap((el, index) => el.productAttributes.map((el) => ({
-      productAttrId: el.productAttrId,
+    const array = dto.orderValue.flatMap((el, index) => el.selectedAttributes.map((el) => ({
+      productAttrId: el.id,
       orderValueId: orderValue[index].id,
     })));
     const orderProductsAttrRepository = await this.orderProductsAttrRepository.bulkCreate(array);
@@ -39,10 +43,10 @@ export class OrdersService {
   }
 
   private async calculationOrderTotal(dto: CreateOrderDto) {
-    const attributesId = dto.orderValue.flatMap((el) => el.productAttributes.map((el) => el.productAttrId));
+    const attributesId = dto.orderValue.flatMap((el) => el.selectedAttributes.map((el) => el.id));
     const [orderProductsAttributes, orderProducts] = await Promise.all([
       this.productService.getProductAttributesById(attributesId),
-      this.productService.getProductById(dto.orderValue.map((el) => el.productId)),
+      this.productService.getProductById(dto.orderValue.map((el) => el.id)),
     ]);
     const attributesPriced = orderProductsAttributes.map((el) => ({ price: el.price }));
     return [...orderProducts, ...attributesPriced].map((el, i) => ({

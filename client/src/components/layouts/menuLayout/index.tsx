@@ -6,6 +6,7 @@ import ProductCard from '../../ui/cards/productCard';
 
 const MenuLayout: FC = () => {
   const [input, setInput] = useState('');
+  const cart = useAppSelector((root) => root.cartSlice.cart);
   const products = useAppSelector((root) => root.productsSlice.products);
   return (
     <div className={styles.menuLayout}>
@@ -20,7 +21,7 @@ const MenuLayout: FC = () => {
       </div>
       <div className={styles.menuGrid}>
         {products.filter((el) => el.name.toLowerCase().includes(input.toLowerCase())).map((el) =>
-          <ProductCard {...el} key={el.id} />,
+          <ProductCard {...el} key={el.id} isSelected={Boolean(cart.find(obj => obj.id === el.id))}/>,
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import GeoSvg from '../../ui/icons/GeoSvg';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setAddress, setDelivery } from '../../../store/counter/visualSlice';
+import { Link } from 'react-router-dom';
 
 
 const Header: FC = () => {
@@ -19,9 +20,11 @@ const Header: FC = () => {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerWrapper}>
-        <div className={styles.logo}><img
-          src={'https://iq-pizza.eatery.club/storage/iq-pizza/setting/image/15/d425b2e046729fd833f75cfd5fa18659.png'}
-          alt={'logo'} /></div>
+        <Link to={'/'}>
+          <div className={styles.logo}><img
+            src={'https://iq-pizza.eatery.club/storage/iq-pizza/setting/image/15/d425b2e046729fd833f75cfd5fa18659.png'}
+            alt={'logo'} /></div>
+        </Link>
         {addressStorage && <>
           <div className={styles.city}><GeoSvg />
             <p>{isDelivery ? 'Доставка, вулиця' : 'Самовивiз, IQ pizza на'} {address}</p></div>

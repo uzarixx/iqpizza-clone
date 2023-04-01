@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Users } from './users.model';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class UsersService {
@@ -17,6 +18,14 @@ export class UsersService {
 
   async getUserByEmail(email: string) {
     const user = await this.usersRepository.findOne({ where: { email } });
+    return user;
+  }
+
+  async findUserByPhone(phoneNumber: string) {
+    const user = await this.usersRepository.findOne({
+      where: { phoneNumber: { [Op.like]: `%${phoneNumber}%` } },
+      attributes: ['id'],
+    });
     return user;
   }
 

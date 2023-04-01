@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Router from './router';
 import { useAppDispatch } from './store/store';
 import { fetchRestaurant } from './store/counter/visualSlice';
-import axios from 'axios';
 import { setCart } from './store/counter/cartSlice';
 
 function App() {
@@ -15,9 +14,9 @@ function App() {
   useEffect(() => {
     const savedCart = JSON.parse(cart || '[]');
     dispatch(setCart(savedCart));
-  }, [dispatch]);
+  }, []);
   return (
-    <Router />
+      <Router />
   );
 }
 

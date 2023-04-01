@@ -1,5 +1,7 @@
 import File from '../components/ui/inputs/file';
 import ReviewFetchService from '../services/http/reviewFetchService';
+import { setReviewEndPopup, setReviewPopup } from '../store/counter/popupSlice';
+import { useAppDispatch } from '../store/store';
 
 export const useCreateReview = async (images: File[], props: { name: string, phoneNumber: string, reviewText: string }) => {
   try {

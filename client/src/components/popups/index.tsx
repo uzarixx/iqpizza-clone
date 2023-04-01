@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import ReviewPopup from './reviewPopup';
-import { useAppSelector } from '../../../store/store';
+import { useAppSelector } from '../../store/store';
 import ReviewEndPopup from './reviewEndPopup';
 import ProductPopup from './productPopup';
 import CartPopup from './cartPopup';

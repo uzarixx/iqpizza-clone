@@ -1,10 +1,26 @@
 .productCard {
+  position: relative;
   display: flex;
   background: white;
   cursor: pointer;
   border-radius: 8px;
   overflow: hidden;
   transition: scale .5s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 70.5%;
+    background-color: #F47521;
+    border-radius: 0 3px 3px 0;
+    transform: translateY(-50%);
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    z-index: 1;
+  }
 
   &:hover {
     scale: 1.03;
@@ -83,11 +99,18 @@
         background: #F47521;
         border-radius: 6px;
         cursor: pointer;
+
         svg {
           fill: white;
         }
       }
     }
 
+  }
+}
+
+.productCardActive {
+  &::before {
+    opacity: 1;
   }
 }

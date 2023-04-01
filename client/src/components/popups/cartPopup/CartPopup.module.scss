@@ -28,10 +28,23 @@
       display: flex;
       flex-direction: column;
       padding: 24px 32px;
+      max-height: 70vh;
+      height: 100%;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        background: #E8EAEF;
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: gray;
+      }
 
       .productBlock {
         display: flex;
         padding-bottom: 24px;
+        cursor: default;
 
         .left {
           min-width: 64px;
@@ -123,6 +136,32 @@
           }
 
         }
+      }
+    }
+
+    .bottomCart {
+      .totalSum {
+        padding: 32px;
+
+        p {
+          color: #9B9B9B;
+          font-size: 14px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 400;
+          margin-bottom: 16px;
+        }
+        h4 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 16px;
+          color: #343434;
+        }
+      }
+      .buttonWrapper {
+        padding: 0 32px 32px;
       }
     }
   }
