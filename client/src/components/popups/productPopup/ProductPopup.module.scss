@@ -118,6 +118,7 @@
           margin-bottom: 8px;
           padding: 0 16px 0 10px;
           border-radius: 8px;
+          cursor: pointer;
 
           .left {
             display: flex;
@@ -166,8 +167,7 @@
       align-items: center;
 
 
-
-      .activeButton{
+      .activeButton {
         cursor: not-allowed;
         border: 1px solid #9B9B9B;
         color: #9B9B9B;
@@ -187,6 +187,7 @@
         border-radius: 8px;
         cursor: pointer;
       }
+
       p {
         font-size: 16px;
         line-height: 21px;

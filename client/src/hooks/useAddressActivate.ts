@@ -7,10 +7,11 @@ export const useAddressActivate = () => {
   const addressStorage = localStorage.getItem('address');
   const isDelivery = localStorage.getItem('isDelivery');
   const restaurantId = localStorage.getItem('restaurantId');
+  const city = localStorage.getItem('city');
   useEffect(() => {
-    if (!addressStorage || !isDelivery || !restaurantId) {
+    if (!addressStorage || !isDelivery || !restaurantId || !city) {
       nav('/address');
     }
-  }, [addressStorage, isDelivery, restaurantId]);
+  }, [addressStorage, isDelivery, restaurantId, city]);
   return;
 };

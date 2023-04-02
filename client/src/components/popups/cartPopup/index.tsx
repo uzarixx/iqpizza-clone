@@ -32,7 +32,7 @@ const CartPopup: FC = () => {
   return (
     <PopupLayout active={active} onClosePopup={onClosePopup}>
       <div className={`${styles.cartContainer} ${active && styles.active}`}>
-        <div className={styles.cartWrapper} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.cartWrapper} onMouseDown={(e) => e.stopPropagation()}>
           <div className={styles.head}>
             <span>Кошик</span>
             <span onClick={onClosePopup}><Close /></span>

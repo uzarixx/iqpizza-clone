@@ -1,13 +1,16 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import GeoSvg from '../../ui/icons/GeoSvg';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setAddress, setDelivery } from '../../../store/counter/visualSlice';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { setLoginPopup } from '../../../store/counter/popupSlice';
+import HeartIco from '../../ui/icons/HeartIco';
 
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((root) => root.userSlice.user);
   const address = useAppSelector((store) => store.visualSlice.address);
   const isDelivery = useAppSelector((store) => store.visualSlice.delivery);
   const addressStorage = localStorage.getItem('address');
@@ -17,6 +20,9 @@ const Header: FC = () => {
     dispatch(setAddress(`${addressStorage}`));
     dispatch(setDelivery(isDeliveryStorage === 'true'));
   }, [addressStorage, restaurantId, isDeliveryStorage]);
+  const onClickLogin = () => {
+    dispatch(setLoginPopup(true));
+  };
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerWrapper}>
@@ -26,11 +32,24 @@ const Header: FC = () => {
             alt={'logo'} /></div>
         </Link>
         {addressStorage && <>
-          <div className={styles.city}><GeoSvg />
-            <p>{isDelivery ? 'Доставка, вулиця' : 'Самовивiз, IQ pizza на'} {address}</p></div>
-          <div className={styles.user}>
-            <button className={styles.login}>Увійти</button>
-          </div>
+          {<div className={styles.city}><GeoSvg />
+            <p>{isDelivery ? 'Доставка, вулиця' : 'Самовивiз, IQ pizza на'} {address}</p></div>}
+          {user
+            ?
+            <div className={styles.userAuth}>
+              <Link to={'/profile/favorites'}>
+                <HeartIco />
+              </Link>
+              <Link to={'/profile/edit'} className={styles.iconUser}>
+                <img src={'https://iq-pizza.eatery.club/storage/iq-pizza/setting/image/10443/man.png'}
+                     alt={'user-ico'} />
+              </Link>
+            </div>
+            :
+            <div className={styles.user}>
+              <button className={styles.login} onClick={onClickLogin}>Увійти</button>
+            </div>
+          }
         </>}
       </div>
     </header>

@@ -27,7 +27,8 @@
   }
 
   .left {
-    width: 154px;
+    max-width: 154px;
+    width: 100%;
     height: 154px;
     position: relative;
 
@@ -56,8 +57,31 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    max-width: 339px;
     position: relative;
+
+
+    .topWrapper {
+      display: flex;
+      justify-content: space-between;
+
+      .favorite {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 20px;
+        background-color: #F8F8FB;
+        cursor: pointer;
+
+        svg {
+          fill: #F47521;
+        }
+      }
+
+
+    }
 
     h4 {
       font-size: 16px;
@@ -112,5 +136,13 @@
 .productCardActive {
   &::before {
     opacity: 1;
+  }
+}
+
+.productStylesMore {
+  border: 1px solid #E8EAEF;
+
+  .right {
+    width: 100%;
   }
 }

@@ -1,16 +1,18 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './OrderLayout.module.scss';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormInput from '../../ui/inputs/formInput';
 import Checkbox from '../../ui/inputs/checkbox';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CheckPoint from '../../ui/icons/CheckPoint';
 import OrderSummaryCard from '../../ui/cards/orderSummaryCard';
-import { useAppSelector } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 import Textarea from '../../ui/inputs/textarea';
 import { orderValidation } from '../../../utils/validation/orderValidation';
 import OrderFetchService from '../../../services/http/orderFetchService';
+import { setCart } from '../../../store/counter/cartSlice';
+import { fetchUser } from '../../../store/counter/userSlice';
 
 
 interface IForm {
@@ -21,15 +23,33 @@ interface IForm {
 }
 
 const OrderLayout: FC = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const cart = useAppSelector((root) => root.cartSlice.cart);
+    const user = useAppSelector((root) => root.userSlice.user);
     const address = localStorage.getItem('address');
     const isDelivery = localStorage.getItem('isDelivery');
     const [rules, setRules] = useState(true);
     const methods = useForm<IForm>({
       resolver: yupResolver(orderValidation),
     });
+    useEffect(() => {
+      if (!user) {
+        dispatch(fetchUser());
+      } else {
+        methods.setValue('phoneNumber', user.user.phoneNumber);
+        methods.setValue('name', user.user.name);
+      }
+    }, [user]);
     const onSubmit: SubmitHandler<IForm> = async (props) => {
-     await OrderFetchService.createOrder(props.name, Number(props.userAmount), props.comment, props.phoneNumber, Boolean(isDelivery), String(address), String(address), cart)
+      try {
+        await OrderFetchService.createOrder(props.name, Number(props.userAmount), props.comment, props.phoneNumber, String(isDelivery), String(address), String(address), cart);
+        navigate('/');
+        dispatch(setCart([]));
+        localStorage.setItem('cart', JSON.stringify([]));
+      } catch (e) {
+        console.log(e);
+      }
     };
     return (
       <div className={styles.orderWrapper}>

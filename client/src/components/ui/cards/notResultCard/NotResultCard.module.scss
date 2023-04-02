@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 151px 312px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+
+  svg {
+    margin-bottom: 24px;
+  }
+  h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    line-height: 1.25;
+    color: #343434;
+    font-weight: 450;
+  }
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #343434;
+  }
+}

@@ -3,6 +3,7 @@ import Router from './router';
 import { useAppDispatch } from './store/store';
 import { fetchRestaurant } from './store/counter/visualSlice';
 import { setCart } from './store/counter/cartSlice';
+import { fetchUser } from './store/counter/userSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -14,9 +15,10 @@ function App() {
   useEffect(() => {
     const savedCart = JSON.parse(cart || '[]');
     dispatch(setCart(savedCart));
+    dispatch(fetchUser());
   }, []);
   return (
-      <Router />
+    <Router />
   );
 }
 

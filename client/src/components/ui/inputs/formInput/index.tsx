@@ -7,14 +7,16 @@ interface IFormInput {
   placeholder: string;
   title: string;
   error?: { [key: string]: any } | undefined;
+  type?: "email" | "text" | "password"
 }
 
-const FormInput: FC<IFormInput> = ({ name, placeholder, title, error }) => {
+const FormInput: FC<IFormInput> = ({ name, placeholder, title, error, type }) => {
   const { register } = useFormContext();
   return (
     <div className={styles.inputWrapper}>
       <p>{title}</p>
       <input
+        type={type || 'text'}
         {...register(name)}
         placeholder={placeholder}
         className={`${error && error[name] && styles.activeError}`}

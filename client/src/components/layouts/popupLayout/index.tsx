@@ -8,7 +8,7 @@ interface props {
 
 const PopupLayout: FC<props> = ({ active, onClosePopup, children }) => {
   return (
-    <div className={`${styles.popupContainer} ${active && styles.active}`} onClick={onClosePopup}>
+    <div className={`${styles.popupContainer} ${active && styles.active}`} onMouseDown={onClosePopup}>
       {children}
     </div>
   );

@@ -4,9 +4,10 @@ import visualSlice from './counter/visualSlice';
 import popupSlice from './counter/popupSlice';
 import productsSlice from './counter/productsSlice';
 import cartSlice from './counter/cartSlice';
+import userSlice from './counter/userSlice';
 
 export const store = configureStore({
-  reducer: { visualSlice, popupSlice, productsSlice, cartSlice },
+  reducer: { visualSlice, popupSlice, productsSlice, cartSlice, userSlice },
 });
 
 

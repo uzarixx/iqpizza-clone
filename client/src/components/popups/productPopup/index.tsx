@@ -22,7 +22,7 @@ const ProductPopup: FC = () => {
     return (
       <PopupLayout active={active} onClosePopup={onClosePopup}>
         <div className={`${styles.productPopupWrapper} ${active && styles.active}`}
-             onClick={(e) => e.stopPropagation()}>
+             onMouseDown={(e) => e.stopPropagation()}>
           {product.map((el) =>
             <div className={styles.main} key={el.id}>
               <div className={styles.imageBlock}>

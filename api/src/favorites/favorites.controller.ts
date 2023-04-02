@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post, UseGuards, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, UseGuards, UsePipes } from '@nestjs/common';
 import { FavoritesService } from './favorites.service';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
 import { ValidationPipe } from '../pipes/validation.pipe';
@@ -24,4 +24,17 @@ export class FavoritesController {
   deleteFavorite(@Body() dto: UpdateFavoriteDto, @UserAuth() user: Users) {
     return this.favoritesService.deleteFavorite(dto, user);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/get-all')
+  getAllFavorites(@UserAuth() user: Users) {
+    return this.favoritesService.getAllFavorites(user)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/get-all-favorite-products')
+  getAllFavoriteProducts(@UserAuth() user: Users) {
+    return this.favoritesService.getAllFavoriteProducts(user)
+  }
+
 }

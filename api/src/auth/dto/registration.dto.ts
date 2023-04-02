@@ -10,4 +10,6 @@ export class RegistrationDto {
   readonly name: string;
   @IsString({ message: 'Is not a string' })
   readonly phoneNumber: string;
+  @IsString({ message: 'Is not a string' })
+  readonly city: string;
 }

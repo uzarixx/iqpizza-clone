@@ -19,6 +19,9 @@ const OrderSummaryCard: FC<Props> = ({ cart }) => {
             <div className={styles.left}>
               <p>{el.name}</p>
               <span>{el.weight} г</span>
+              {el.selectedAttributes.map((el, i) =>
+                <span key={i}>1x {el.name}</span>
+              )}
             </div>
             <div className={styles.right}>
               <p>x {el.count}</p>

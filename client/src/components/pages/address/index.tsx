@@ -23,6 +23,7 @@ const Address: FC = () => {
     localStorage.setItem('address', addressValue);
     localStorage.setItem('isDelivery', `${isDelivery}`);
     localStorage.setItem('restaurantId', `${restaurantId}`);
+    localStorage.setItem('city', `${city}`);
     dispatch(setAddress(addressValue));
     dispatch(setDelivery(isDelivery));
     dispatch(setRestaurantValueId(restaurantId));

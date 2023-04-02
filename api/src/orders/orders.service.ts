@@ -16,12 +16,12 @@ export class OrdersService {
     @InjectModel(OrderValue) private orderValueRepository: typeof OrderValue,
     @InjectModel(OrderProductsAttributes) private orderProductsAttrRepository: typeof OrderProductsAttributes,
     private productService: ProductsService,
-    private usersService: UsersService
+    private usersService: UsersService,
   ) {
   }
 
   async createOrder(dto: CreateOrderDto) {
-    const user = await this.usersService.findUserByPhone(dto.phoneNumber)
+    const user = await this.usersService.findUserByPhone(dto.phoneNumber);
     const resultCalculate = await this.calculationOrderTotal(dto);
     const order = await this.ordersRepository.create({
       ...dto,

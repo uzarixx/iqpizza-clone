@@ -9,7 +9,7 @@ interface UserCreationAttrs {
   email: string;
   name: string;
   phoneNumber: string;
-  dateOfBirth: string;
+  dateOfBirth: string | number;
   city: string;
   password: string;
 }

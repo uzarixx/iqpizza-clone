@@ -6,6 +6,8 @@ import Home from '../components/pages/home';
 import Popups from '../components/popups';
 import Order from '../components/pages/order';
 import ScrollToTop from '../components/layouts/scroolToTop';
+import Edit from '../components/pages/profile/edit';
+import Favorites from '../components/pages/profile/favorites';
 
 
 const Router: FC = () => {
@@ -19,6 +21,8 @@ const Router: FC = () => {
         <Route path={'/address'} element={<Address />} />
         <Route path={'/order'} element={<Order />} />
         <Route path={'*'} element={<Home />} />
+        <Route path={'/profile/edit'} element={<Edit />} />
+        <Route path={'/profile/favorites'} element={<Favorites />} />
       </Routes>
     </>
   );

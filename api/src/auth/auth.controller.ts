@@ -22,10 +22,14 @@ export class AuthController {
     return this.authService.login(dto, response);
   }
 
-
   @Post('/refresh')
   refresh(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
     return this.authService.refreshToken(request.cookies.jwt, response);
+  }
+
+  @Post('/logout')
+  logout(@Req() request: Request) {
+    return this.authService.logout(request.cookies.jwt)
   }
 
 }

@@ -48,7 +48,7 @@ const ReviewPopup: FC = () => {
 
   return (
     <PopupLayout active={active} onClosePopup={onClosePopup}>
-      <div className={`${styles.reviewPopupWrapper} ${active && styles.active}`} onClick={(e) => e.stopPropagation()}>
+      <div className={`${styles.reviewPopupWrapper} ${active && styles.active}`} onMouseDown={(e) => e.stopPropagation()}>
         <div className={styles.head}>
           <p>Залишити відгук</p>
           <span onClick={onClosePopup}><Close /></span>

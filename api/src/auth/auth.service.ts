@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 import { LoginDto } from './dto/login.dto';
 import { JwtTokensService } from '../jwt-tokens/jwt-tokens.service';
+import { phoneNumber } from '../utils/phoneNumber';
 
 
 @Injectable()
@@ -17,7 +18,8 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private jwtTokensService: JwtTokensService,
-  ) {}
+  ) {
+  }
 
   async login(dto: LoginDto, response: Response) {
     const user = await this.validateUser(dto);
@@ -30,10 +32,17 @@ export class AuthService {
   async registration(dto: RegistrationDto, response: Response) {
     const candidate = await this.usersService.getUserByEmail(dto.email);
     if (candidate) {
-      throw new HttpException('User with this email already exists', HttpStatus.FORBIDDEN);
+      throw new HttpException('Такий користувач вже іcнує', HttpStatus.BAD_REQUEST);
     }
     const hashPassword = await bcrypt.hash(dto.password, 7);
-    const user = await this.usersService.createUser({ ...dto, password: hashPassword });
+    const validPhoneNumber = phoneNumber(dto.phoneNumber);
+    const user = await this.usersService.createUser({
+      ...dto,
+      city: dto.city,
+      dateOfBirth: Date.now(),
+      password: hashPassword,
+      phoneNumber: validPhoneNumber,
+    });
     const { token } = await this.generateRefreshToken(user);
     await this.jwtTokensService.createSession(token, user.id);
     response.cookie('jwt', token, { httpOnly: true });
@@ -48,6 +57,15 @@ export class AuthService {
       const user = await this.usersService.getUserById(verifyToken.id);
       const resultToken = await this.generateAccessToken(user);
       return { resultToken: resultToken.token, user };
+    } catch (e) {
+      throw new HttpException('Token is not a valid', HttpStatus.UNAUTHORIZED);
+    }
+  }
+
+  async logout(token: string) {
+    try {
+      await this.jwtTokensService.deleteSessionByToken(token);
+      return 'success';
     } catch (e) {
       throw new HttpException('Token is not a valid', HttpStatus.UNAUTHORIZED);
     }
@@ -74,13 +92,13 @@ export class AuthService {
   private async validateUser(userDto: LoginDto) {
     const user = await this.usersService.getUserByEmail(userDto.email);
     if (!user) {
-      throw new UnauthorizedException('Sorry, we can\'t find an account with this email address. ');
+      throw new UnauthorizedException('Користувач не знайден');
     }
     const passwordEquals = await bcrypt.compare(userDto.password, user.password);
     if (user && passwordEquals) {
       return user;
     }
-    throw new UnauthorizedException('Incorrect password.');
+    throw new UnauthorizedException('Пароль не дійсний');
   }
 
 }

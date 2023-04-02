@@ -1,0 +1,53 @@
+.loginPopupWrapper {
+  position: relative;
+  padding: 32px 24px;
+  background: white;
+  border-radius: 16px;
+  transform: translateY(100%);
+  max-width: 440px;
+  opacity: 0;
+  transition: all .3s;
+
+  .closeButton {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+
+    svg {
+      fill: #F47521;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    color: #343434;
+  }
+
+  .desc {
+    display: inline-block;
+    margin: 10px 0 25px;
+    color: #3E3E3E;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+
+
+  b {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #F47521;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+
+.loginPopupActive {
+  transform: translateY(0);
+  opacity: 1;
+}
