@@ -84,7 +84,7 @@ export class AuthService {
     return {
       token: this.jwtService.sign({ email: users.email, id: users.id }, {
         secret: process.env.PRIVATE_KEY,
-        expiresIn: '15m',
+        expiresIn: '30m',
       }),
     };
   }

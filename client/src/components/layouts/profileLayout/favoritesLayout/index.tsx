@@ -3,8 +3,7 @@ import styles from './Favorites.module.scss';
 import { IProduct } from '../../../../constants/types';
 import ProductsFetchService from '../../../../services/http/productsFetchService';
 import ProductCard from '../../../ui/cards/productCard';
-import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { fetchFavorites } from '../../../../store/counter/productsSlice';
+import { useAppSelector } from '../../../../store/store';;
 import NotResultCard from '../../../ui/cards/notResultCard';
 
 export const fetchUserFavorites = async () => {
@@ -18,9 +17,7 @@ const FavoritesLayout: FC = () => {
   const cart = useAppSelector((root) => root.cartSlice.cart);
   useEffect(() => {
     fetchUserFavorites().then((r) => setProducts(r));
-  }, [favorites]);
-
-
+  }, [favorites])
   if (!products.length) {
     return (
       <NotResultCard

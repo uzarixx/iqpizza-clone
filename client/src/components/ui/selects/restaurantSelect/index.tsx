@@ -31,7 +31,7 @@ const RestaurantSelect: FC<props> = ({ city, setAddress, setRestaurantId }) => {
              onClick={onClickRestaurant(i, `${el.streetName}, ${el.streetNumber}`, el.id)}>
           <h2>IQ pizza на {el.streetName}, {el.streetNumber}</h2>
           <span>вул. {el.streetName}, {el.streetNumber}</span>
-          <p className={`${nowHour >= el.openAt && nowHour <= el.closedAt ? styles.isOpen : styles.isClosed}`}>Відкрито
+          <p className={`${nowHour > el.openAt && nowHour < el.closedAt ? styles.isOpen : styles.isClosed}`}>Відкрито
             з {el.openAt}:00 до {el.closedAt}:00</p>
         </div>,
       )}

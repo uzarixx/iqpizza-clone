@@ -9,5 +9,13 @@ export default class OrderFetchService {
     });
   }
 
+  static async getAllOrder() {
+    return $api.get('/order/get-all')
+  }
+
+  static async getById(id: number) {
+    return $api.get(`/order/get-order/${id}`)
+  }
+
 
 }

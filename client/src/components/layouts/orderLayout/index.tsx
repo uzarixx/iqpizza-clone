@@ -44,13 +44,14 @@ const OrderLayout: FC = () => {
     const onSubmit: SubmitHandler<IForm> = async (props) => {
       try {
         await OrderFetchService.createOrder(props.name, Number(props.userAmount), props.comment, props.phoneNumber, String(isDelivery), String(address), String(address), cart);
-        navigate('/');
+        navigate('/profile/history');
         dispatch(setCart([]));
         localStorage.setItem('cart', JSON.stringify([]));
       } catch (e) {
         console.log(e);
       }
     };
+
     return (
       <div className={styles.orderWrapper}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -93,7 +94,6 @@ const OrderLayout: FC = () => {
                 <h3>Коментар до замовлення</h3>
                 <Textarea name={'comment'} placeholder={'Коментар'} />
               </section>
-
             </div>
             <div className={styles.orderSummary}>
               <OrderSummaryCard cart={cart} />

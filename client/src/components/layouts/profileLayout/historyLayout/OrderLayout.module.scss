@@ -1,0 +1,57 @@
+.historyWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .orderWrapper {
+    padding: 32px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: scale .4s;
+
+    &:hover {
+      scale: 1.03;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      p {
+        font-size: 17px;
+        color: #343434;
+      }
+
+      span {
+        font-size: 14px;
+        color: #9B9B9B;
+        font-weight: 400;
+      }
+      .right {
+        text-align: right;
+      }
+    }
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 400;
+
+      button {
+        display: flex;
+        align-items: center;
+        color: #9B9B9B;
+        background: transparent;
+        svg {
+          margin-left: 8px;
+          fill: #9B9B9B;
+        }
+      }
+    }
+  }
+}

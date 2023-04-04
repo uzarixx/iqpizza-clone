@@ -1,0 +1,50 @@
+.repeatOrderPopup {
+  padding: 99px 65px 102px;
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: .3s;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #343434;
+  }
+
+  .repeatOrderPopupText {
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #343434;
+    font-weight: 400;
+    max-width: 436px;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    width: 100%;
+
+    button {
+      margin: 0 5px 13px;
+      width: 100%;
+
+      &:first-child {
+        background: white;
+        border: 1px solid #F47521;
+        color: #F47521;
+      }
+    }
+  }
+}
+
+.activeRepeatOrder {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

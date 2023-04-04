@@ -6,8 +6,6 @@ interface props {
   title: string,
   subtitle: string
 }
-
-
 const NotResultCard: FC<props> = ({ title, subtitle }) => {
   return (
     <div className={styles.wrapper}>

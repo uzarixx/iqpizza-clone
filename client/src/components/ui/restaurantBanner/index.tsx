@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import Info from '../icons/Info';
 import Review from '../icons/Review';
 import { setReviewPopup } from '../../../store/counter/popupSlice';
+import StatusRestaurant from '../other/StatusRestaurant';
 
 const RestaurantBanner: FC = () => {
   const dispatch = useAppDispatch();
   const restaurant = useAppSelector((root) => root.visualSlice.restaurant);
-  const nowHour = new Date().getHours();
   const onClickReviewPopup = () => {
     dispatch(setReviewPopup(true));
   };
@@ -31,8 +31,7 @@ const RestaurantBanner: FC = () => {
         <div className={styles.infoAboutRestaurant}>
           <div className={styles.left}>
             <p>Інформація про ресторан</p>
-            <span><span
-              className={`${nowHour > restaurant.openAt && nowHour < restaurant.closedAt ? styles.isOpen : styles.isClosed}`}></span>  Відкрито з {restaurant.openAt}:00 до {restaurant.closedAt}:00</span>
+            <StatusRestaurant closedAt={restaurant.closedAt} openAt={restaurant.openAt} />
           </div>
           <div className={styles.right}><Info /></div>
         </div>

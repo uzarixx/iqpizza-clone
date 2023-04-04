@@ -29,8 +29,8 @@ const ProductCard: FC<IProductCard> = ({ id, imageLink, weight, name, price, des
     if (!user) {
       dispatch(setLoginPopup(true));
     } else {
-      favorite.includes(id) ? await ProductsFetchService.deleteFavorite(id) : await ProductsFetchService.addToFavorite(id);
-      dispatch(setFavorites(favorite.includes(id) ? favorite.filter((el) => el !== id) : favorite.concat(id)));
+      favorite?.includes(id) ? await ProductsFetchService.deleteFavorite(id) : await ProductsFetchService.addToFavorite(id);
+      dispatch(setFavorites(favorite?.includes(id) ? favorite?.filter((el) => el !== id) : favorite?.concat(id)));
     }
   };
 
@@ -53,7 +53,6 @@ const ProductCard: FC<IProductCard> = ({ id, imageLink, weight, name, price, des
           <div className={styles.onAddToCard}><Plus /></div>
         </div>
       </div>
-
     </div>
   );
 };

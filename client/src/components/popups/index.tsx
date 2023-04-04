@@ -6,6 +6,7 @@ import ProductPopup from './productPopup';
 import CartPopup from './cartPopup';
 import LoginPopup from './loginPopup';
 import RegistrationPopup from './registrationPopup';
+import OrderPopup from './orderPopup';
 
 
 const Popups: FC = () => {
@@ -15,11 +16,13 @@ const Popups: FC = () => {
   const isActiveCart = useAppSelector((root) => root.popupSlice.cartPopup);
   const isActiveLogin = useAppSelector((root) => root.popupSlice.loginPopup);
   const isActiveRegistration = useAppSelector((root) => root.popupSlice.registrationPopup);
+  const isActiveOrder = useAppSelector((root) => root.popupSlice.orderPopup);
   return (
     <>
       {isActiveReview && <ReviewPopup />}
       {isActiveReviewEnd && <ReviewEndPopup />}
       {isActiveProduct.active && <ProductPopup />}
+      {isActiveOrder.active && <OrderPopup />}
       {isActiveCart && <CartPopup />}
       {isActiveLogin && <LoginPopup />}
       {isActiveRegistration && <RegistrationPopup />}

@@ -7,6 +7,7 @@ import MenuBar from '../../ui/asides/menuBar';
 import MenuLayout from '../../layouts/menuLayout';
 import CartButton from '../../ui/buttons/cartButton';
 import RestaurantBanner from '../../ui/restaurantBanner';
+import Footer from '../../semantical/footer';
 
 
 const Home: FC = () => {
@@ -19,14 +20,17 @@ const Home: FC = () => {
 
 
   return (
-    <div className={styles.homeContainer}>
-      <RestaurantBanner />
-      <div className={styles.menu}>
-        <MenuBar />
-        <MenuLayout />
-        <CartButton />
+    <>
+      <div className={styles.homeContainer}>
+        <RestaurantBanner />
+        <div className={styles.menu}>
+          <MenuBar />
+          <MenuLayout />
+          <CartButton />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -8,6 +8,8 @@ import Order from '../components/pages/order';
 import ScrollToTop from '../components/layouts/scroolToTop';
 import Edit from '../components/pages/profile/edit';
 import Favorites from '../components/pages/profile/favorites';
+import Orders from '../components/pages/profile/history';
+import Footer from '../components/semantical/footer';
 
 
 const Router: FC = () => {
@@ -23,6 +25,7 @@ const Router: FC = () => {
         <Route path={'*'} element={<Home />} />
         <Route path={'/profile/edit'} element={<Edit />} />
         <Route path={'/profile/favorites'} element={<Favorites />} />
+        <Route path={'/profile/history'} element={<Orders />} />
       </Routes>
     </>
   );

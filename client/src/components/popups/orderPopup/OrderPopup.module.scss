@@ -1,0 +1,154 @@
+.orderPopup {
+  max-width: 550px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 0 32px 32px;
+  transition: .3s;
+  opacity: 0;
+  transform: translateY(100%);
+
+  .head {
+    margin: 0 -32px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #E8EAEF;
+
+    p {
+      font-size: 20px;
+      color: #343434;
+    }
+
+    svg {
+      fill: #F47521;
+      cursor: pointer;
+    }
+  }
+
+  .mainInfo {
+    padding: 24px 0;
+    border-bottom: 1px solid #E8EAEF;
+
+    .orderAddressHead {
+      font-size: 20px;
+      color: #343434;
+      margin-bottom: 4px;
+    }
+
+    .orderAddressUnder {
+      font-size: 14px;
+      color: #9B9B9B;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .startWrapper {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      color: #343434;
+      margin-bottom: 24px;
+    }
+
+    ul {
+      li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-size: 14px;
+        font-weight: 400;
+
+        span {
+          color: #9B9B9B;
+        }
+
+        p {
+          color: #343434;
+        }
+      }
+    }
+  }
+
+  .productsWrapperMain {
+    padding: 25px 0;
+    border-bottom: 1px solid #E8EAEF;
+
+    .scrollWrapper {
+      max-height: 250px;
+      overflow-y: auto;
+padding-right: 5px;
+      &::-webkit-scrollbar {
+        background: #E8EAEF;
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #9B9B9B;
+      }
+    }
+
+    .title {
+      font-size: 20px;
+      color: #343434;
+      margin-bottom: 20px;
+    }
+
+
+    .productWrapper {
+      margin-bottom: 16px;
+
+
+      .pizzaName {
+        font-size: 14px;
+        color: #343434;
+        margin-bottom: 4px;
+        font-weight: 400;
+      }
+
+      ul {
+        margin-bottom: 9px;
+
+        li {
+          font-size: 12px;
+          color: #9B9B9B;
+          margin-bottom: 4px;
+          font-weight: 400;
+        }
+      }
+
+      .priceValue {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #343434;
+        font-weight: 400;
+
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .bottomOrder {
+    padding-top: 24px;
+
+    span {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #343434;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+
+.activeOrderPopup {
+  opacity: 1;
+  transform: translateY(0);
+}

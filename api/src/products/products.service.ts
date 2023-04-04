@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Products } from './products.model';
 import { ProductsAttributes } from './productsAttributes.model';
 import { CreateProductAttributesDto } from './dto/create-product-attributes.dto';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ProductsService {

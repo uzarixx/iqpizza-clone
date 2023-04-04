@@ -30,7 +30,7 @@ export class OrdersService {
       orderPrice: resultCalculate,
     });
     const orderValue = await this.orderValueRepository.bulkCreate(dto.orderValue.map((el) => ({
-      ...el,
+      count: el.count,
       productId: el.id,
       orderId: order.id,
     })));
@@ -43,16 +43,25 @@ export class OrdersService {
   }
 
   private async calculationOrderTotal(dto: CreateOrderDto) {
-    const attributesId = dto.orderValue.flatMap((el) => el.selectedAttributes.map((el) => el.id));
-    const [orderProductsAttributes, orderProducts] = await Promise.all([
-      this.productService.getProductAttributesById(attributesId),
-      this.productService.getProductById(dto.orderValue.map((el) => el.id)),
-    ]);
-    const attributesPriced = orderProductsAttributes.map((el) => ({ price: el.price }));
-    return [...orderProducts, ...attributesPriced].map((el, i) => ({
-      price: el.price,
-      count: dto.orderValue[i]?.count || 1,
-    })).reduce((total, { price, count }) => total + price * count, 0);
+    const attributeValues = dto.orderValue.flatMap(({ selectedAttributes, count }) =>
+      selectedAttributes.map(({ id }) => ({ id, count }))
+    );
+    const attributePrices = await Promise.all(attributeValues.map(({ id, count }) =>
+      this.productService.getProductAttributesById(id)
+        .then((prices) => ({ prices: prices.map((attribute) => attribute.price), count }))
+    ));
+    const attributeSum = attributePrices.map(({ prices, count }) =>
+      prices.reduce((sum, price) => sum + price, 0) * count || 1
+    ).reduce((sum, price) => sum + price, 0);
+    const productValues = dto.orderValue.map(({ id, count }) => ({ id, count }));
+    const productPrices = await Promise.all(productValues.map(({ id, count }) =>
+      this.productService.getProductById(id).then((prices) => ({ prices: prices.map((product) => product.price), count }))
+    ));
+    const productSum = await Promise.all(productPrices.map(({ prices, count }) =>
+      prices.reduce((sum, price) => sum + price, 0) * count
+    ));
+    const totalSum = productSum.reduce((sum, price) => sum + price, attributeSum);
+    return Number(totalSum);
   }
 
   async getOrder(id: number, user: Users) {
@@ -74,7 +83,7 @@ export class OrdersService {
 
 
   async getAllOrders(user: Users) {
-    const orders = await this.ordersRepository.findAll({ where: { userId: user.id } });
+    const orders = await this.ordersRepository.findAll({ where: { userId: user.id }, order: [['createdAt', 'DESC']] });
     return orders;
   }
 

@@ -54,15 +54,16 @@
 
   .right {
     padding: 20px 24px;
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     position: relative;
 
-
     .topWrapper {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 8px;
 
       .favorite {
         display: flex;
@@ -74,13 +75,11 @@
         border-radius: 20px;
         background-color: #F8F8FB;
         cursor: pointer;
-
         svg {
           fill: #F47521;
         }
+
       }
-
-
     }
 
     h4 {

@@ -16,12 +16,11 @@ const ProfileBar: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const path = pathname.split('/')[2];
-  console.log(path);
   const onLogout = async () => {
     dispatch(setUser(null));
     dispatch(setFavorites([]));
     await UserFetchService.logout();
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
     navigate('/');
   };
   return (
@@ -32,7 +31,8 @@ const ProfileBar: FC = () => {
           профіль</Link></li>
         <li className={`${path === 'favorites' && styles.active}`}><Link to={'/profile/favorites'}><HeartIco />Обрані
           товари</Link></li>
-        <li className={`${path === 'history' && styles.active}`}><Link to={'/profile/history'}><Ticket />Історія замовлень</Link>
+        <li className={`${path === 'history' && styles.active}`}><Link to={'/profile/history'}><Ticket />Історія
+          замовлень</Link>
         </li>
         <li onClick={onLogout}><Exit />Вихід</li>
       </ul>

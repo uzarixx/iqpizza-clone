@@ -1,5 +1,15 @@
+
+.container {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .profileWrapper {
   max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
   padding: 40px 30px 70px;
   display: flex;
@@ -9,6 +19,7 @@
     margin-right: 30px;
     max-width: 225px;
     width: 100%;
+
     h2 {
       margin-bottom: 40px;
       font-size: 20px;

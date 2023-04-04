@@ -5,6 +5,7 @@ export interface CounterState {
   reviewPopup: boolean;
   reviewEndPopup: boolean;
   productPopup: { productId: number, active: boolean };
+  orderPopup: { orderId: number, active: boolean };
   cartPopup: boolean;
   loginPopup: boolean;
   registrationPopup: boolean;
@@ -15,6 +16,7 @@ const initialState: CounterState = {
   reviewEndPopup: false,
   cartPopup: false,
   productPopup: { productId: 0, active: false },
+  orderPopup: { orderId: 0, active: false },
   loginPopup: false,
   registrationPopup: false,
 };
@@ -41,6 +43,9 @@ const popupSlice = createSlice({
     setRegistrationPopup: (state, action) => {
       state.registrationPopup = action.payload;
     },
+    setOrderPopup: (state, action) => {
+      state.orderPopup = action.payload;
+    },
   },
 });
 
@@ -54,5 +59,6 @@ export const {
   setCartPopup,
   setLoginPopup,
   setRegistrationPopup,
+  setOrderPopup,
 } = popupSlice.actions;
 
